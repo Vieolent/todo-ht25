@@ -1,1 +1,13 @@
+h1 Todos 
 
+p These are the things that need doing
+
+a href="/new" Create new
+
+- @todos.each do |todo|
+    h3 
+     a href='/#{todo["id"]}/edit' #{todo["name"]}
+    p #{todo["description"]}
+    form action="/#{todo["id"]}/delete" method="post"
+        input type="submit" value="Done!"
+    hr
