@@ -2,12 +2,20 @@ h1 Todos
 
 p These are the things that need doing
 
-a href="/new" Create new
+h2 Create new
+form action="/new" method="post"
+    input name="new_todo" placeholder="I need to..." type="text"
+    input type="text" name="description" placeholder="How?"
+    input type="submit" value="Add"
 
 - @todos.each do |todo|
     h3 
-     a href='/#{todo["id"]}/edit' #{todo["name"]}
-    p #{todo["description"]}
-    form action="/#{todo["id"]}/delete" method="post"
+        a href='/#{todo["id"]}/edit' #{todo["name"]}
+        p #{todo["description"]}
+        form action="/#{todo["id"]}/delete" method="post"
+        input type="submit" value="Remove"
+        form action="/#{todo["id"]}/done" method="post"
         input type="submit" value="Done!"
-    hr
+        hr
+
+p These are the thing that are done

@@ -3,11 +3,6 @@ require 'sqlite3'
 require 'slim'
 require 'sinatra/reloader'
 
-
-
-
-
-# Routen /
 get('/') do
     db = SQLite3::Database.new("db/todos.db")
     db.results_as_hash = true
@@ -49,5 +44,12 @@ post("/:id/update") do
     name = params[:name]
     description = params[:description]
     db.execute("UPDATE todos SET name=?, description=? WHERE id=?", [name, description, id])
+    redirect('/')
+end
+
+post("/:id/done") do
+    db = SQLite3::Database.new("db/todos.db")  
+    id = params[:id].to_i
+    db.execute("UPDATE todos SET done=1 WHERE id=?", [id])
     redirect('/')
 end
