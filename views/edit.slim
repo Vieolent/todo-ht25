@@ -2,5 +2,11 @@ h2 Update your todos
 
 form action="/#{@selected_todo["id"]}/update" method="post"
     input type="text" value='#{@selected_todo["name"]}' name="name"
+    select name="category" 
+        option value="Buy" Buy
+        option value="Build" Build
+        option value="Do" Do
+        option value="Administrate" Administrate
+        option value="Miscellaneuos" Miscellaneuos
     input type="text" value='#{@selected_todo["description"]}' name="description"
     input type="submit" value="Update"

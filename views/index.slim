@@ -5,17 +5,38 @@ p These are the things that need doing
 h2 Create new
 form action="/new" method="post"
     input name="new_todo" placeholder="I need to..." type="text"
+    select name="category" 
+        option value="Buy" Buy
+        option value="Build" Build
+        option value="Do" Do
+        option value="Administrate" Administrate
+        option value="Miscellaneuos" Miscellaneuos
     input type="text" name="description" placeholder="How?"
     input type="submit" value="Add"
 
-- @todos.each do |todo|
+hr
+- @todosNotDone.each do |todo|
     h3 
         a href='/#{todo["id"]}/edit' #{todo["name"]}
+        h5 #{todo["category"]}
         p #{todo["description"]}
-        form action="/#{todo["id"]}/delete" method="post"
-        input type="submit" value="Remove"
-        form action="/#{todo["id"]}/done" method="post"
-        input type="submit" value="Done!"
-        hr
 
-p These are the thing that are done
+        form action="/#{todo["id"]}/delete" method="post"
+            input type="submit" value="Remove"
+        form action="/#{todo["id"]}/done" method="post"
+            input type="submit" value="Done!"
+        hr
+h2 Done:
+
+p These are the things that are done
+- @todosDone.each do |todo|
+    h3 
+        a href='/#{todo["id"]}/edit' #{todo["name"]}
+        h5 #{todo["category"]}
+        p #{todo["description"]}
+
+        form action="/#{todo["id"]}/delete" method="post"
+            input type="submit" value="Remove"
+        //form action="/#{todo["id"]}/undone" method="post"
+        //input type="submit" value="Done!"
+        hr
